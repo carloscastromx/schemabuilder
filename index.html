@@ -74,6 +74,7 @@
             color: #eae8e4;
             cursor: not-allowed;
             resize: none;
+            font-size: 10px;
         }
         ::placeholder{
             color: #eae8e4;
@@ -83,13 +84,18 @@
             color: #eae8e4;
             border: 1px solid #001D38;
             padding: 6px 20px;
-            cursor: pointer;
             font-size: 15px;
             transition: all 0.3s ease;
         }
-        button:hover{
+        button:not([disabled]){
+            cursor: pointer;
+        }
+        button:not([disabled]):hover{
             background: #eae8e4;
             color: #001D38;
+        }
+        button[disabled]{
+            cursor: not-allowed;
         }
     </style>
 </head>
@@ -110,7 +116,7 @@
             </div>
         </div>
         <div class="full-row">
-            <button disabled>Generate</button>
+            <button type="button" disabled>Generate</button>
         </div>
         <div>
             <h3 class="results"></h3>
@@ -163,6 +169,8 @@
             document.querySelector("#schema-output").value += JSON.stringify(jsonData, null, 2);
             document.querySelector("#schema-output").value += "\n";
             document.querySelector("#schema-output").value += "<\/script>";
+
+
             
         });
 
